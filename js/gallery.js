@@ -72,15 +72,33 @@ function imageTemplate(obj) {
     const src = obj.preview;
     const href = obj.original;
     const alt = obj.description;
-       return `<li class = "gallery-item"><a class = "gallery-link" href = ${href} onclick="event.preventDefault()">
+    return `<li class = "gallery-item"><a class = "gallery-link" href = ${href} onclick="event.preventDefault()">
             <img class = "gallery-image" src = ${src} data-source = ${href} alt = ${alt} />
         </a>
     </li>`   
 }
-    
+
+const instance = basicLightbox.create(`
+  <div class="modal">
+  <a class="gallery-link" href="large-image.jpg">
+    <img
+      class="gallery-image"
+      src="small-image.jpg"
+      data-source="large-image.jpg"
+      alt="Image description"
+    />
+  </a>
+</div>
+`);
+
 pictures.addEventListener("click", function (evt) {
-  console.log(evt.target);
+  instance.show(evt.target);
 });
+
+
+
+
+
 // const result = imageTemplate({ 
 //     preview:
 //       "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg",
