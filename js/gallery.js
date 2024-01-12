@@ -68,32 +68,33 @@ const pictures = document.querySelector('.gallery');
 const markup = images.map(imageTemplate).join('\n\n');
 pictures.innerHTML = markup;
 
-function imageTemplate(obj) {
-    const src = obj.preview;
-    const href = obj.original;
-    const alt = obj.description;
+function imageTemplate(item) {
+    const src = item.preview;
+    const href = item.original;
+    const alt = item.description;
     return `<li class = "gallery-item"><a class = "gallery-link" href = ${href} onclick="event.preventDefault()">
             <img class = "gallery-image" src = ${src} data-source = ${href} alt = ${alt} />
         </a>
     </li>`   
 }
 
-const instance = basicLightbox.create(`
-  <div class="modal">
-  <a class="gallery-link" href="large-image.jpg">
-    <img
-      class="gallery-image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
+pictures.addEventListener("click", onImageClick);
+function onImageClick(evt) {
+  if (evt.target.nodeName !== "IMG")  {
+    return;
+  }
+  const sorce = evt.target.dataset.sorce;
+  const instance = basicLightbox.create(`
+   <img
+    src="${sorce}"
+    width = "800"
+    height = "600"
     />
-  </a>
-</div>
 `);
+ instance.show();
+}
 
-pictures.addEventListener("click", function (evt) {
-  instance.show(evt.target);
-});
+
 
 
 
