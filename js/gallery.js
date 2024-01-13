@@ -80,18 +80,31 @@ function imageTemplate(item) {
 
 pictures.addEventListener("click", onImageClick);
 function onImageClick(evt) {
-  if (evt.target.nodeName !== "IMG")  {
+  if (evt.target.nodeName !== "IMG") {
     return;
   }
-  const sorce = evt.target.dataset.sorce;
+  const source = evt.target.dataset.source;
+  const alt = evt.target.getAttribute("alt");
   const instance = basicLightbox.create(`
-   <img
-    src="${sorce}"
-    width = "800"
-    height = "600"
-    />
-`);
- instance.show();
+  <div class = "modal">
+  <img class = "modal-img" src = "${source}" alt = "${alt}"></img>
+  </div>
+  `,
+    {
+      closable: false,
+      onShow: instance => {
+        document.addEventListener("keydown", onEscapePress);
+      },
+      onClose: instance => {
+        document.removeEventListener("keydown", onEscapePress);
+      },
+    }
+)  ;
+function onEscapePress(evt) {
+  if (evt.code === "Escape") 
+  instance.close();
+}
+instance.show();
 }
 
 
