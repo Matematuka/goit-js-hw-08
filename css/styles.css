@@ -32,7 +32,9 @@ padding: 28px 164px;
 }
 
 .modal-img {   
-    position: absolute; 
+position: absolute; 
+top: 28px;   
+left: 164px;
 width: 1112px;
 height: 640px;
 }
