@@ -31,7 +31,8 @@ background: rgba(46, 47, 66, 0.80);
 padding: 28px 164px;
 }
 
-.modal-img {    
+.modal-img {   
+    position: absolute; 
 width: 1112px;
 height: 640px;
 }
