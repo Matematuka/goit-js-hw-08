@@ -91,12 +91,11 @@ function onImageClick(evt) {
   </div>
   `,
     {
-      closable: false,
       onShow: instance => {
-        document.addEventListener("keydown", onEscapePress);
+        window.addEventListener("keydown", onEscapePress);
       },
       onClose: instance => {
-        document.removeEventListener("keydown", onEscapePress);
+        window.removeEventListener("keydown", onEscapePress);
       },
     }
 )  ;
